@@ -71,7 +71,23 @@ class Company {
     calculateTotalPayroll() {  //Task 4 payroll
         return this.employees.reduce((total, emp) => total + emp.calculateAnnualSalary(), 0)
     }
-}
+    //Task 5:
+    promoteToManager(employee, teamSize) {
+        let index = this.employees.indexOf(employee);
+        if (index !==-1){
+            this.employees[index] = new Manager(
+                employee.name,
+                employee.id,
+                employee.department,
+                employee.salary,
+                teamSize
+            )}
+            else {
+                console.log("Not Found")
+            }
+        }
+    }
+
 //Test cases:
 const company = new Company("TechCorp");
 company.addEmployee(emp1);
@@ -86,4 +102,8 @@ console.log(company.listEmployees());
 console.log("Task 4");
 console.log(company.calculateTotalPayroll());
 
-
+//Task 5 
+console.log("Task 5")
+company.promoteToManager(emp1, 3); //Using employee Alice to manager
+console.log(company.listEmployees());
+// Expected output: "Manager: Alice Johnson, ID: 101, Department: Sales, Salary: $5000, Team Size: 3"
