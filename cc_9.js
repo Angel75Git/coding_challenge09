@@ -40,8 +40,9 @@ class Manager extends Employee {
         return `Manager: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary: $${this.salary}, Team size: ${this.teamSize}`
     }
     calculateBonus(){
-        return this.salary * .10 * 12 //have to account for 12 months
+        return this.salary * .10 *12  //have to account for 12 months
     }
+    
 }
 //Test Cases: 
 const mgr1 = new Manager("John Smith", 201, "IT", 8000, 5);
@@ -57,15 +58,18 @@ console.log("Task 3");
 
 //Creating company class 
 class Company {
-    constructor(name, employees = []){
+    constructor(name){
         this.name = name
-        this.employees = employees
+        this.employees = []
     }
     addEmployee(employee){  //pushing employee to array
         this.employees.push(employee)
     }
     listEmployees(){
         return this.employees  //Reruning array
+    }
+    calculateTotalPayroll() {  //Task 4 payroll
+        return this.employees.reduce((total, emp) => total + emp.calculateAnnualSalary(), 0)
     }
 }
 //Test cases:
@@ -76,3 +80,10 @@ console.log(company.listEmployees());
 // Expected output:
 // "Employee: Alice Johnson, ID: 101, Department: Sales, Salary: $5000"
 // "Manager: John Smith, ID: 201, Department: IT, Salary: $8000, Team Size: 5"
+
+
+//Task 4 ---going back to class company
+console.log("Task 4");
+console.log(company.calculateTotalPayroll());
+
+
